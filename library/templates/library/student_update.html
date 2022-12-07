@@ -1,0 +1,29 @@
+{% extends 'library/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container" style="width:800px; margin:0 auto;margin-top: 20px;">
+    <h1 style="color: white;">Update a Student</h1>
+</div>
+<div class="card-body" style="width:800px; margin:0 auto; background-color: aliceblue; margin-top: 30px;">
+
+    <form method="POST" enctype="multipart/form-data">
+        {%csrf_token%}  
+        {{form.name|as_crispy_field}}   
+        {{form.username|as_crispy_field}}
+        {{form.pic|as_crispy_field}}
+        {{form.is_active|as_crispy_field}}
+
+            <input style="margin-top: 10px;" class="button btn btn-primary" type="submit" value="Update">
+        
+        
+        </form>
+
+</div>
+
+
+
+
+{% endblock content %}
+        
+

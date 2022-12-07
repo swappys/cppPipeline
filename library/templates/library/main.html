@@ -1,0 +1,37 @@
+{% extends 'library/base.html' %} {% block content %}
+
+
+<div class="row" style="margin: auto; margin-top: 40px;">
+  <form method="GET" class="d-flex">
+    <input class="form-control me-2" type="text" placeholder="Search" name="search-area" aria-label="Search" value="{{search_input}}">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
+
+{% for book in books %}
+<div class="col-md-4" style="margin-top: 50px;">
+<div class="card" style="width: 18rem">
+  <span style="text-align: center;"></span>
+  {% if book.pic %}
+  <img src="https://lmsbooks.s3.amazonaws.com{{book.pic.url}}" class="card-img-top" alt="" />
+  {% else %}
+  <img src="/static/avatar/open-book-clipart-03.png" class="card-img-top" alt="">
+  {% endif %}
+  <div class="card-body">
+    <h5 class="card-title">{{book.title}}</h5>
+    <p class="card-text">{{book.summary}}</p>
+    <a href="{% url 'library:book' book.id %}" class="btn btn-primary"
+      >View Details</a
+    >
+  </div>
+</div>
+</div>
+
+{% endfor %}
+
+
+</div>
+
+{% endblock content %}
+
+
+

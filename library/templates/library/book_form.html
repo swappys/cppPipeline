@@ -1,0 +1,54 @@
+{% extends 'library/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container" style="width:800px; margin:0 auto;margin-top: 20px;">
+    <h1 style="color: white;">Add a new Book</h1>
+</div>
+
+<div class="card-body" style="width:800px; margin:0 auto; background-color: aliceblue; margin-top: 30px;">
+    <a href="{% url 'library:book-list' %}" class="btn btn-primary">Back</a>
+    <form method="POST" enctype="multipart/form-data"action="" autocomplete="off">
+    {%csrf_token%}
+    {{form.title|as_crispy_field}}   
+    {{form.author|as_crispy_field}}   
+    {{form.summary|as_crispy_field}}   
+    {{form.isbn|as_crispy_field}}   
+    {{form.genre|as_crispy_field}}   
+    {{form.language|as_crispy_field}}   
+    {{form.total_copies|as_crispy_field}}   
+    {{form.available_copies|as_crispy_field}}   
+    {{form.pic|as_crispy_field}}   
+    <!-- <label >{{form.title.label}} </label>
+    {{form.title}} 
+    
+    <label >{{form.author.label}} </label>
+    {{form.author}} 
+    <label >{{form.summary.label}} </label>
+    {{form.summary}}
+    
+    <label >{{form.isbn.label}} </label>
+    {{form.isbn}} 
+    
+    <label >{{form.genre.label}}</label>
+    {{form.genre}} 
+    
+    <label >{{form.language.label}} </label> 
+    {{form.language}}  
+    
+    <label >{{form.total_copies.label}}</label> 
+    {{form.total_copies}}
+    <label >{{form.available_copies.label}}</label> 
+    {{form.available_copies}}
+    <label >{{form.pic.label}}</label> 
+    {{form.pic}} -->
+
+    <label> <input class="button btn btn-primary" type="submit" value="Submit"></label>
+    
+    </form>
+</div>
+
+
+
+{% endblock content %}

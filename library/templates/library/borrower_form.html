@@ -1,0 +1,39 @@
+{% extends 'library/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+
+<div class="container" style="width:800px; margin:0 auto;margin-top: 20px;">
+    <h1 style="color: white;">Issue Book</h1>
+</div>
+<div class="card-body" style="width:800px; margin:0 auto; background-color: aliceblue; margin-top: 50px;">
+
+    <a href="{% url 'library:borrower-list' %}" class="btn btn-primary">Back</a>
+    <form method="POST" action="" autocomplete="off">
+    {%csrf_token%}
+    {{form.student|as_crispy_field}} 
+    {{form.book|as_crispy_field}} 
+    {{form.issue_date|as_crispy_field}} 
+    {{form.return_date|as_crispy_field}} 
+    <!-- <label >{{form.student.label}} </label>
+    {{form.student}} 
+    
+    <label >{{form.book.label}} </label>
+    {{form.book}} 
+    <label >{{form.issue_date.label}} </label>
+    {{form.issue_date}}
+    
+    <label >{{form.return_date.label}} </label>
+    {{form.return_date}}  -->
+    
+
+    <label> <input class="button btn btn-primary"  type="submit" value="Submit"></label>
+
+
+
+    </form>
+</div>
+
+
+{% endblock content %}

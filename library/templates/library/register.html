@@ -1,0 +1,66 @@
+{% extends 'library/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container" style="width:800px; margin:0 auto;margin-top: 20px;">
+    <h1 style="color: white;">Register a Student</h1>
+</div>
+<div class="card-body" style="width:800px; margin:0 auto; background-color: aliceblue; margin-top: 30px;">
+    <a href="{% url 'library:student-list' %}" class="btn btn-primary">Go Back</a>
+    <form method="POST" enctype="multipart/form-data" action="" autocomplete="off">
+        
+        {%csrf_token%}
+        <!-- {{form|crispy}} -->
+        {{form.email|as_crispy_field}}     
+        {{form.name|as_crispy_field}}   
+        {{form.username|as_crispy_field}}   
+        {{form.enrollment_no|as_crispy_field}} 
+        <p>(12 digit enrollment_no)</p>
+        <div class="row">
+            <div class = "col-md-4">
+                {{form.password1|as_crispy_field}}  
+            </div>
+            <div class ="col-md-8">
+                {{form.password2|as_crispy_field}}  
+            </div>
+        </div>  
+        {{form.pic|as_crispy_field}}
+           
+       
+       
+
+        
+         <!--<label >{{form.email.label}} <span>(Add a valid email)</span></label>
+        {{form.email}} 
+        
+        <label >{{form.name.label}} </label>
+        {{form.name}} 
+        
+        <label >{{form.username.label}} </label>
+        {{form.username}} 
+        
+        <label >{{form.enrollment_no.label}}</label>
+        {{form.enrollment_no}} 
+        
+        <label >{{form.password1.label}} <span>(8 characters & alphanumeric)</span></label> 
+        {{form.password1}}  
+        
+        <label >{{form.password2.label}}</label> 
+        {{form.password2}}
+
+        <label >{{form.pic.label}}</label> 
+        {{form.pic}}-->
+
+        <label> <input class="button btn btn-primary" type="submit" value="Submit"></label> 
+        
+        
+        </form>
+       
+</div>
+
+
+
+
+{% endblock content %}
+

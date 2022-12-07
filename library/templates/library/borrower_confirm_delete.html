@@ -1,0 +1,20 @@
+
+{% extends 'library/base.html' %}
+{% block content %}
+
+<div class="container" style="width:800px; margin:0 auto;margin-top: 40px; background-color: aliceblue;">
+<div >
+    <a href="{% url 'library:borrower-list' %}" class="btn btn-primary" style="margin-top: 20px;">Back</a>
+</div>
+
+<div style="margin-top: 50px;">
+    <form method = "POSt">
+        {%csrf_token%}
+        <b style="color: black;">Are you sure you want to delete the book issued by'{{borrower|title}}'?</b><br>
+        <input class="button btn btn-danger" type="submit" value="Yes, Delete" style="margin-top: 30px; margin-bottom: 20px;">
+        </form>
+</div>
+</div>
+
+
+{% endblock content %}

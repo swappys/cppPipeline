@@ -1,0 +1,23 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="profile">
+{% if student.pic %}
+<div class="about__img img">
+    <img src="https://lmsstudents.s3.amazonaws.com{{student.pic.url}}" alt="">
+</div>
+{% else %}
+<div class="about__img img">
+    <img src="/static/avatar/images.png" alt="">
+</div>
+{% endif %}
+<p style="color: white;"><h1 style="color: white;">{{student.name|title}}</h1></p>
+<p style="color: white;">Enrollment No: {{student.enrollment_no}}</p>
+<p style="color: white;">Date Joined: {{student.date_joined}}</p>
+<a  href="{% url 'library:student-update' student.id%}" class="btn btn-primary">Edit Profile</a>
+</div>
+{% endblock content %}
+
+
+
+
+

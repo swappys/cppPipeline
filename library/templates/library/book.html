@@ -1,0 +1,29 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<div class="profile">
+{% if book.pic %}
+<div class="about__img img">
+    <img src="https://lmsbooks.s3.amazonaws.com{{book.pic.url}}" alt="">
+</div>
+{% else %}
+<div class="about__img img">
+    <img src="/static/avatar/open-book-clipart-03.png" alt="">
+</div>
+{% endif %}
+{% if request.user.is_admin or request.user.is_superuser %}
+<a  href="{% url 'library:book-update' book.id%}" class="btn btn-primary">Edit</a>
+{% endif %}
+<span><h1 style="color: white;">{{book.title|title}}</h1></span>
+<p style="width: 50%; margin: auto; color: white;">{{book.summary}}</p>
+<h4 style="margin: auto; color: white; margin-top: 10px;">Genre:</h4><p style="color: white;"> {{book.genre.all|join:', '}}</p>
+ <h4 style="margin: auto; color: white;">ISBN:</h4> <p style="color: white;"> {{book.isbn}}</p>
+
+
+
+</div>
+{% endblock content %}
+
+
+
+
+

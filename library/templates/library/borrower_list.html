@@ -1,0 +1,53 @@
+{% extends "library/base.html" %} {% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>{{message}}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+{% endif %}
+<div class="container">
+  <div class="row" style="margin: auto; margin-top: 40px;">
+    <form method="GET" class="d-flex">
+      <input class="form-control me-2" type="text" placeholder="Search" name="search-area" aria-label="Search" style="background-color:white ;"
+        value="{{search_input}}">
+      <button class="btn btn-info" type="submit">Search</button>
+    </form>
+  </div>
+  <h1 style="margin-top: 10px; color: white; margin-top: 50px;">Here are the list of books which are borrowed.</h1>
+<table class="table table-striped table-dark" style="margin: auto;margin-top: 40px;">
+  <thead>
+    <tr>
+      <th scope="col">SN</th>
+      <th scope="col">Student Name</th>
+      <th scope="col">Book</th>
+      <th scope="col">Return Date</th>
+      <th scope="col">Fine</th>
+      {% if request.user.is_admin or request.user.is_superuser %}
+      <th scope="col">Action</th>{% endif %}
+    </tr>
+  </thead>
+  {% if borrowers %}
+  <tbody>
+    {% for borrower in borrowers %}
+    <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>{{borrower.student.name}}</td>
+      <td>{{borrower.book.title}}</td>
+      <td>{{borrower.return_date}}</td>
+      <td>{{borrower.fine}}</td>
+      <td>{% if request.user.is_admin or request.user.is_superuser %}
+        <a href="{% url 'library:borrower-update' borrower.id%}" class="btn btn-primary">Update</a>  <a href="{% url 'library:borrower-delete' borrower.id%}" class="btn btn-danger">Delete</a>
+        {% endif %}</td>
+    </tr>
+
+    {% endfor %}
+  </tbody>
+  {% else %}
+  <tbody><tr><td colspan="6"> No Books Issued.</td></tr></tbody>
+  {% endif %}
+</table>
+
+{% endblock %}
+
