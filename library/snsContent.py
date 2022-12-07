@@ -54,4 +54,16 @@ class Publisher:
             return False
         return True
         
+    def create_queue(self, queue_name):
+        try:
+            sqs_client = boto3.client('sqs')
+            print('\ncreating the queue {}...'.format(queue_name))
+            response = sqs_client.create_queue(QueueName=queue_name)
+            print(response) # this is not really needed
+        
+        except ClientError as e:
+            logging.error(e)
+            return False
+        return True
+        
         
